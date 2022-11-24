@@ -1,0 +1,30 @@
+Installation pas à pas d’un serveur Jenkins sous windows et exploration de la CI
+
+1. Installer Jenkins, un serveur d'Intégration Continue, sur ta machine windows,
+   en suivant les instructions officielles : https://www.jenkins.io/doc/book/installing/windows/
+
+2. Installer Python for Windows : https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe
+
+3. En pièce jointe, tu trouveras:
+   * une archive (my-python-project.zip) contenant un projet en Python (code et tests unitaires),
+     à extraire ici: C:\stage_observation\
+   * Un pipeline pour Jenkins (pipeline.groovy) dont il faudra copier le code dans un pipeline créé avec l'interface web.
+
+
+6. Observation :
+   6.1. lancer un build du job 'my-python-project'
+   6.2. Regarder la vue Blue Ocean du build #1. Tu peux faire une capture d'écran ?
+   6.3. Regarder le Console log du build #1. Copie le contenu dans un fichier texte 'mon-premier-build-log.txt'
+   6.4. Regarder les résultats des tests du build #1. Est-ce que tous les tests passent ? Sais-tu corriger le code python ?
+
+7. Défi n°1 : Lancer le job régulièrement
+   Pour cela, tu dois rajouter un trigger de type 'cron' dans le code du pipeline.
+   Ajouter un cron pour lancer le pipeline toutes les 5 minutes. Aide-toi avec ces deux liens :
+   - https://www.jenkins.io/doc/book/pipeline/syntax/#trigger
+   - https://crontab.guru/
+
+8. Défi n°2 : Ajouter une fonctionnalité et un test
+   Pour cela, tu dois :
+   8.1. Modifier C:\stage_observation\my-python-project\Person.py et ajouter une méthode 'count' à la classe Person, qui renvoie:
+        len(self.name)
+   8.2. Modifier C:\stage_observation\my-python-project\Basic_Test.py pour rajouter un test en python, qui vérifie après avoir ajouté 2 noms que 'count' vaut 2
